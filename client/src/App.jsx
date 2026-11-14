@@ -1084,6 +1084,19 @@ function Console({ user, onLogout }) {
           </button>
           {user.role === 'admin' && (
             <button
+              className="quick-ignite-btn"
+              onClick={() => {
+                setPage('overview');
+                setIgnite(true);
+              }}
+              title="Click on the sensor map to ignite a test wildfire"
+            >
+              <Flame size={14} fill="currentColor" />
+              <span>Ignite Fire</span>
+            </button>
+          )}
+          {user.role === 'admin' && (
+            <button
               className="icon-button"
               aria-label="Simulator controls"
               title="Simulator controls"
@@ -1243,16 +1256,34 @@ function Console({ user, onLogout }) {
             <section className="panel alerts-page">
               <div className="panel-heading">
                 <h2>Incidents</h2>
-                <select
-                  aria-label="Incident state"
-                  value={alertState}
-                  onChange={(e) => void loadAlerts(e.target.value)}
-                >
-                  <option value="active">Active</option>
-                  <option value="ack">Acknowledged</option>
-                  <option value="resolved">Resolved</option>
-                  <option value="all">All recent</option>
-                </select>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <select
+                    aria-label="Incident state"
+                    value={alertState}
+                    onChange={(e) => void loadAlerts(e.target.value)}
+                  >
+                    <option value="active">Active</option>
+                    <option value="ack">Acknowledged</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="all">All recent</option>
+                  </select>
+                  <button
+                    className="export-incidents-btn"
+                    onClick={() => {
+                      const data = JSON.stringify(pageAlerts, null, 2);
+                      const blob = new Blob([data], { type: 'application/json' });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = `emberwatch-incidents-${Date.now()}.json`;
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    }}
+                    title="Export incident audit log to JSON"
+                  >
+                    Export Log
+                  </button>
+                </div>
               </div>
               <AlertList
                 alerts={pageAlerts}

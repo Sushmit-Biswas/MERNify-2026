@@ -317,7 +317,49 @@ small {
 }
 .connection-dot.online {
   background: #22c55e;
-  box-shadow: 0 0 0 4px #22c55e12;
+  box-shadow: 0 0 8px #22c55e, 0 0 16px rgba(34, 197, 94, 0.4);
+  animation: pulse-dot 2.5s infinite ease-in-out;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.2); }
+}
+.quick-ignite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #fff;
+  border: 1px solid rgba(251, 146, 60, 0.45);
+  border-radius: 8px;
+  padding: 6px 13px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.35);
+  transition: all 0.2s ease;
+}
+.quick-ignite-btn:hover {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.5);
+  transform: translateY(-1px);
+}
+.export-incidents-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #18181b;
+  color: #e4e4e7;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.export-incidents-btn:hover {
+  background: #27272a;
+  border-color: #71717a;
+  color: #fff;
 }
 .avatar {
   display: grid;
@@ -352,6 +394,12 @@ small {
   border-radius: 13px;
   background: #111113;
   overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.summary-card:hover {
+  border-color: rgba(251, 146, 60, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
 }
 .summary-card > div:first-child {
   z-index: 1;
