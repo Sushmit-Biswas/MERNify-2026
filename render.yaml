@@ -27,3 +27,5 @@ services:
         value: '1'
       - key: SIM_HZ
         value: '2'
+      - key: RAW_TTL_MINUTES
+        value: '15'

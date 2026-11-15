@@ -28,7 +28,7 @@ export const config = {
   demoPassword: process.env.DEMO_PASSWORD || 'ember-demo',
 
   // Retention
-  rawTtlMinutes: num(process.env.RAW_TTL_MINUTES, 360),
+  rawTtlMinutes: num(process.env.RAW_TTL_MINUTES, 15),
   rollupTtlHours: num(process.env.ROLLUP_TTL_HOURS, 24),
 
   // Ingest protection
